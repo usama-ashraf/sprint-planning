@@ -1,2 +1,0 @@
-class Sprint < ApplicationRecord
-end
