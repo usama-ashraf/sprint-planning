@@ -5,17 +5,24 @@ export default () => (
   <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
     <div className="jumbotron jumbotron-fluid bg-transparent">
       <div className="container secondary-color">
-        <h1 className="display-4">Food Recipes</h1>
+        <h1 className="display-4">Sprints And Tickets</h1>
         <p className="lead">
-          A curated list of recipes for the best homemade meal and delicacies.
+          A curated list of sprints and tickets for the best.
         </p>
         <hr className="my-4" />
         <Link
-          to="/recipes"
+          to="/sprints"
           className="btn btn-lg custom-button"
           role="button"
         >
-          View Recipes
+          View Sprints
+        </Link>
+        <Link
+          to="/tickets"
+          className="btn btn-lg custom-button custom-button-tick"
+          role="button"
+        >
+          View Tickets
         </Link>
       </div>
     </div>

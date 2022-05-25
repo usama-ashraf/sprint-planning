@@ -1,3 +1,6 @@
+// Place all the styles related to the Sprints controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
 .bg_primary-color {
     background-color: #FFFFFF;
   }
@@ -14,6 +17,9 @@
     background-color: #293241;
     color: #FFF;
     border: none;
+  }
+  .custom-button-tick{
+      margin-left: 20px;
   }
   .custom-button.btn:hover {
     color: #FFF !important;
