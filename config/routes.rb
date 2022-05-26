@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      # sprints
       get 'sprints/index'
       post 'sprints/create', to: 'sprints#create'
       get 'show/:id', to: 'sprints#show'
       delete 'destroy/:id', to: 'sprints#destroy'
+      # tickets
+      get 'tickets/index'
+      post 'tickets/create', to: 'sprints#create'
+      get 'show/:id', to: 'tickets#show'
+      delete 'destroy/:id', to: 'tickets#destroy'
     end
   end
   root 'home#index'

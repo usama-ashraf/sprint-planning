@@ -22,7 +22,7 @@ function SprintsIndex() {
         get_sprints()
 
     }, []);
-    
+
     return (
         <div>
             <h1>Sprints</h1>
@@ -43,16 +43,23 @@ function SprintsIndex() {
                     </tr>
                 </thead>
                 <tbody>
-                {
-                    sprints.map(item => (
-                        <tr key={item.id}>
-                            <td>{item.id}</td>
-                            <td>{item.name}</td>
-                            <td>{item.start_date}</td>
-                            <td>{item.end_date}</td>
-                        </tr>
-                    ))
-                }
+                    {
+                        sprints.map(item => (
+                            <tr key={item.id}>
+                                <td>{item.id}</td>
+                                <td>{item.name}</td>
+                                <td>{item.start_date}</td>
+                                <td>{item.end_date}</td>
+                                <td><Link
+                                    to= {`/sprints/${item.id}`}
+                                    className="btn btn-lg custom-button"
+                                    role="button"
+                                >
+                                    Show
+                                </Link></td>
+                            </tr>
+                        ))
+                    }
                 </tbody>
             </table>
         </div>
