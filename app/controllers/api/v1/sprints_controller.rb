@@ -1,4 +1,4 @@
-class Api::V1::SprintsController < ApplicationController
+class Api::V1::SprintsController < Api::ApiController
   before_action :set_recipe, only: [:show, :destroy]
   def index
     sprints = Sprint.all.order(created_at: :desc)
@@ -9,6 +9,7 @@ class Api::V1::SprintsController < ApplicationController
   end
 
   def create
+    binding.pry
     sprint = Sprint.create!(sprint_params)
     return render json: {
       sprint: ActiveModelSerializers::SerializableResource.new(sprint, each_serializer: SprintSerializer ),
