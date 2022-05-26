@@ -20,26 +20,24 @@ function SprintCreate() {
             }
         })
     }
-    const formSubmitHandler = async () => {
+    const formSubmitHandler =  (e) => {
+        e.preventDefault();
         createApiHandler();
     }
 
     const createApiHandler = async () => {
-        let sprint = {
+        let data = {
             name: sprint.name,
             start_date: sprint.start_date,
             end_date: sprint.end_date,
         }
-        let url = "/api/v1/sprints/create"
-        await axios.post(url, {
-            sprint
+        const url = "/api/v1/sprints/create"
+       await axios.post(url, {
+            data
         })
         .then(response => {
-            swal('Thankyou!', response.data.message, 'success')
+            swal('Thank you!', 'Created successfully', 'success')
             history.push('/sprints')
-        })
-        .catch(function (error) {
-            swal('Oops!', 'Something Went Wrong!', 'error')
         })
     }
 

@@ -9,7 +9,6 @@ class Api::V1::SprintsController < Api::ApiController
   end
 
   def create
-    binding.pry
     sprint = Sprint.create!(sprint_params)
     return render json: {
       sprint: ActiveModelSerializers::SerializableResource.new(sprint, each_serializer: SprintSerializer ),
@@ -51,7 +50,7 @@ class Api::V1::SprintsController < Api::ApiController
 
   private
   def sprint_params
-    params.permit(:name, :start_date, :end_date)
+    params.require(:data).permit(:name, :start_date, :end_date)
   end
   def set_recipe
     @recipe = Recipe.find_by(id: params[:id])
