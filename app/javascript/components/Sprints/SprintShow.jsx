@@ -14,7 +14,7 @@ function SprintShow() {
                 params: { id: sprint_id }
             })
                 .then(response => {
-                    debugger
+                    
                     let tickets = response.data.tickets;
                     let name = response.data.sprint_name;
                     setTickets(tickets)

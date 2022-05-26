@@ -20,9 +20,13 @@ function SprintCreate() {
             }
         })
     }
-    const formSubmitHandler =  (e) => {
+    const formSubmitHandler = (e) => {
         e.preventDefault();
-        createApiHandler();
+        if (sprint.name !== "" && sprint.start_date !== "" && sprint.end_date !== "") {
+            createApiHandler();
+        } else {
+            swal('Error!', 'Please fill out the fields', 'error');
+        }
     }
 
     const createApiHandler = async () => {
@@ -32,35 +36,35 @@ function SprintCreate() {
             end_date: sprint.end_date,
         }
         const url = "/api/v1/sprints/create"
-       await axios.post(url, {
+        await axios.post(url, {
             data
         })
-        .then(response => {
-            swal('Thank you!', 'Created successfully', 'success')
-            history.push('/sprints')
-        })
+            .then(response => {
+                swal('Thank you!', 'Created successfully', 'success');
+                history.push('/sprints')
+            })
     }
 
     return (
         <div>
-            <form>
-                <div className="row py-4 d-flex justify-content-center">
-                    <div className="col-lg-9 ">
-                        <div className="p-md-5 p-4 bg-white est_form_main rounded est_box_shadow">
-                            <div>
-                                <h5 className="m-0 ">Create Estimation</h5>
-                            </div>
-                            <hr className="mb-lg-5" />
+            <div className="row py-4 d-flex justify-content-center">
+                <div className="col-lg-9 ">
+                    <div className="p-md-5 p-4 bg-white est_form_main rounded est_box_shadow">
+                        <div>
+                            <h5 className="m-0 ">Create Estimation</h5>
+                        </div>
+                        <hr className="mb-lg-5" />
+                        <form>
 
                             <div className="row mb-3">
                                 <div className="col-xl-4">
-                                    <input className="est_form_input p-2 rounded mb-3 w-100" type="text" placeholder="Sprint Name" value={sprint.name} name="name" required onChange={sprintInputsHandler} />
+                                    <input className="est_form_input p-2 rounded mb-3 w-100" type="text" placeholder="Sprint Name" value={sprint.name} name="name" onChange={sprintInputsHandler} required />
                                 </div>
                                 <div className="col-xl-4">
-                                    <input className="est_form_input p-2 rounded mb-3 w-100 text-secondary" type="date" name="start_date" value={sprint.start_date} required onChange={sprintInputsHandler} />
+                                    <input className="est_form_input p-2 rounded mb-3 w-100 text-secondary" type="date" name="start_date" value={sprint.start_date} onChange={sprintInputsHandler} required />
                                 </div>
                                 <div className="col-xl-4">
-                                    <input className="est_form_input p-2 rounded mb-3 w-100 text-secondary" type="date" name="end_date" value={sprint.end_date} required onChange={sprintInputsHandler} />
+                                    <input className="est_form_input p-2 rounded mb-3 w-100 text-secondary" type="date" name="end_date" value={sprint.end_date} onChange={sprintInputsHandler} required />
                                 </div>
                             </div>
                             <div className="offset d-flex justify-content-end p-0 my-4">
@@ -69,10 +73,10 @@ function SprintCreate() {
                                     <i className="fa fa-check-circle ms-2"></i>
                                 </button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     )
 }

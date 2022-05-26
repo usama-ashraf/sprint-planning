@@ -24,7 +24,7 @@ function TicketCreate() {
         })
     }
     const ticketOptionInputsHandler = (event) => {
-        debugger
+        
         let value = event.value;
         setTicket(prevValue => {
             return {
@@ -42,8 +42,8 @@ function TicketCreate() {
                 .then(response => {
                     let options = response.data.options;
                     const selectOptions = options.map(d => ({
-                        "value" : d.id,
-                        "label" : d.name
+                        "value": d.id,
+                        "label": d.name
                     }))
                     setSelectOptions(selectOptions)
                 })
@@ -52,9 +52,13 @@ function TicketCreate() {
 
     }, []);
 
-    const formSubmitHandler =  (e) => {
+    const formSubmitHandler = (e) => {
         e.preventDefault();
-        createApiHandler();
+        if (ticket.name !== "" && ticket.description !== "" && ticket.sprint_id !== "") {
+            createApiHandler();
+        } else {
+            swal('Error!', 'Please fill out the fields', 'error');
+        }
     }
 
     const createApiHandler = async () => {
@@ -63,15 +67,15 @@ function TicketCreate() {
             description: ticket.description,
             sprint_id: ticket.sprint_id,
         }
-        debugger
+        
         const url = "/api/v1/tickets/create"
-       await axios.post(url, {
+        await axios.post(url, {
             data
         })
-        .then(response => {
-            swal('Thank you!', 'Created successfully', 'success')
-            history.push('/tickets')
-        })
+            .then(response => {
+                swal('Thank you!', 'Created successfully', 'success')
+                history.push('/tickets')
+            })
     }
 
     return (
