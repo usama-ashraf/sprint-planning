@@ -16,7 +16,6 @@ class Api::V1::TicketsController < Api::ApiController
   end
 
   def create
-    binding.pry
     ticket = Ticket.create!(ticket_params)
     return render json: {
       ticket: ActiveModelSerializers::SerializableResource.new(ticket, each_serializer: TicketSerializer ),
