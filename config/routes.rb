@@ -4,13 +4,10 @@ Rails.application.routes.draw do
       # sprints
       get 'sprints/index'
       post 'sprints/create', to: 'sprints#create'
-      get 'show/:id', to: 'sprints#show'
-      delete 'destroy/:id', to: 'sprints#destroy'
+      get 'sprints/select_options', to: 'sprints#select_options'
       # tickets
       get 'tickets/index'
-      post 'tickets/create', to: 'sprints#create'
-      get 'show/:id', to: 'tickets#show'
-      delete 'destroy/:id', to: 'tickets#destroy'
+      post 'tickets/create', to: 'tickets#create'
     end
   end
   root 'home#index'

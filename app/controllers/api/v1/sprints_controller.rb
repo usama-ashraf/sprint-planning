@@ -20,32 +20,12 @@ class Api::V1::SprintsController < Api::ApiController
       success: "false"
     } 
   end
-
-  def show
-    if sprint
-      render json: {
-        sprint: ActiveModelSerializers::SerializableResource.new(sprint, each_serializer: SprintSerializer ),
-        success: "true"
-      }
-    else
-      render status: 422,
-      json:{
-      errors: "sprint not found",
-      success: "false"
-    } 
-    end
-  end
-
-  def destroy
-    if sprint.destroy
-      render json: sprint
-    else
-      render status: 422,
-      json:{
-      errors: "not deleted sucessfully",
-      success: "false"
-    } 
-    end
+ 
+  def select_options
+    options = Sprint.all.select(:id, :name)
+    render json: {
+      options: options
+    }
   end
 
   private
